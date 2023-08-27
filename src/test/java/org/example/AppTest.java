@@ -15,25 +15,26 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+import static org.example.BasePage.TESTING_COURSE;
+
 public class AppTest {
-    private static WebDriver driver;
+    private static WebDriver webDriver;
     private Map<String, Object> vars;
     JavascriptExecutor js;
     private BasePage BasePage;
 
     @Before
     public void setUp() {
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
-        driver.navigate().to("https://skillfactory.ru/");
+        webDriver = new ChromeDriver();
+        webDriver.manage().window().maximize();
+        webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+        webDriver.navigate().to("https://skillfactory.ru/");
         vars = new HashMap<String, Object>();
-        BasePage = new BasePage(driver);
+        BasePage = new BasePage(webDriver);
     }
 
     @After
-    public void tearDown() {
-        driver.quit();
+    public void tearDown() {webDriver.quit();
     }
 
     public String waitForWindow(int timeout) {
@@ -42,7 +43,7 @@ public class AppTest {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        Set<String> whNow = driver.getWindowHandles();
+        Set<String> whNow = webDriver.getWindowHandles();
         Set<String> whThen = (Set<String>) vars.get("window_handles");
         if (whNow.size() > whThen.size()) {
             whNow.removeAll(whThen);
@@ -51,7 +52,7 @@ public class AppTest {
     }
 
     @Test
-    public void Test1_contacts() {
+    public void Test1_Contacts() {
         BasePage.clickContacts();
         Assert.assertEquals("Контактная информация", BasePage.getContacts());
     }
@@ -59,55 +60,61 @@ public class AppTest {
     @Test
     public void Test2_Free_events() {
         BasePage.clickFree_events();
-        Assert.assertEquals("Бесплатные мероприятия и материалы", BasePage.getFreeEvents());
+        Assert.assertEquals("Бесплатные курсы", BasePage.getFreeEvents());
     }
 
     @Test
-    public void Test3_career_center() {
+    public void Test3_Career_center() {
         BasePage.clickCareerCenter();
         Assert.assertEquals("Центр карьеры", BasePage.getCareerCenter());
     }
 
     @Test
-    public void Test4_media() {
+    public void Test4_Media() {
         BasePage.clickMedia();
         Assert.assertEquals("Честные истории о карьере в IT", BasePage.getMedia());
     }
 
     @Test
-    public void Test5_corporativnoye_obuchenye() {
+    public void Test5_Corporate_education() {
         BasePage.clickEducation();
         Assert.assertEquals("Развивайте бизнес", BasePage.getCorporateEducation());
     }
 
     @Test
-    public void Test6_courses() {
+    public void Test6_Courses() {
         BasePage.clickCourses();
         Assert.assertEquals("Онлайн-курсы по IT профессиям", BasePage.getCourses());
     }
 
     @Test
-    public void Test7_sign_up_for_a_course() {
+    public void Test7_Partnership() {
+        BasePage.clickPartnership();
+        Assert.assertEquals("станьте партнером SkillFactory", BasePage.getPartnership());
+    }
 
-        BasePage.Course_Testing();
+    @Test
+    public void Test8_Sign_up_for_a_course() {
+
+        BasePage.CourseTesting();
         {
-            WebElement element = driver.findElement(By.cssSelector(".tn-elem__5608766611679951555527 > .tn-atom"));
-            Actions builder = new Actions(driver);
+            WebElement element = webDriver.findElement(By.xpath(TESTING_COURSE));
+            Actions builder = new Actions(webDriver);
             builder.moveToElement(element).perform();
         }
         {
-            WebElement element = driver.findElement(By.tagName("body"));
-            Actions builder = new Actions(driver);
+            WebElement element = webDriver.findElement(By.tagName("body"));
+            Actions builder = new Actions(webDriver);
             builder.moveToElement(element, 0, 0).perform();
         }
-        vars.put("window_handles", driver.getWindowHandles());
-        driver.findElement(By.cssSelector(".tn-elem__5608766611679951555532 > .tn-atom")).click();
+        vars.put("window_handles", webDriver.getWindowHandles());
+        webDriver.findElement(By.cssSelector(".tn-elem__5608766611679951555532 > .tn-atom")).click();
         vars.put("win6219", waitForWindow(2000));
-        driver.switchTo().window(vars.get("win6219").toString());
-        driver.findElement(By.linkText("Записаться на курс")).click();
+        webDriver.switchTo().window(vars.get("win6219").toString());
+        webDriver.findElement(By.linkText("Записаться на курс")).click();
         {
-            WebElement element = driver.findElement(By.tagName("body"));
-            Actions builder = new Actions(driver);
+            WebElement element = webDriver.findElement(By.tagName("body"));
+            Actions builder = new Actions(webDriver);
             builder.moveToElement(element, 0, 0).perform();
         }
         BasePage.SendName1();
@@ -117,7 +124,7 @@ public class AppTest {
     }
 
     @Test
-    public void Test8_send_contact() {
+    public void Test9_Send_contacts() {
         BasePage.ClickName();
         BasePage.SendName();
         BasePage.ClickEmail();
@@ -128,12 +135,12 @@ public class AppTest {
     }
 
     @Test
-    public void Test9_get_consulation() {
+    public void Test10_Get_consultation() {
 
-        vars.put("window_handles", driver.getWindowHandles());
+        vars.put("window_handles", webDriver.getWindowHandles());
         BasePage.ClickCourse();
         vars.put("win8852", waitForWindow(2000));
-        driver.switchTo().window(vars.get("win8852").toString());
+        webDriver.switchTo().window(vars.get("win8852").toString());
         BasePage.ClickGetConsultation();
         BasePage.ClickNAme2();
         BasePage.InputName();
@@ -145,12 +152,12 @@ public class AppTest {
     }
 
     @Test
-    public void Test10_read_the_history() {
-        BasePage.readHistory();
+    public void Test11_Read_student_story() {
+        BasePage.readStory();
     }
 
     @Test
-    public void Test11_Ask() {
+    public void Test12_Ask() {
         BasePage.clickContacts();
         BasePage.ClickBtnAsk();
         BasePage.SendName();
@@ -164,25 +171,25 @@ public class AppTest {
     }
 
     @Test
-    public void Test12_go_to_media() {
+    public void Test13_Go_to_media() {
         BasePage.Go_to_media();
     }
 
     @Test
-    public void Test13_subscription() {
+    public void Test14_Subscription() {
         BasePage.Subscription();
         BasePage.SendSubscription();
         BasePage.SubmitSubscription();
     }
 
     @Test
-    public void Test14_Free_registration() {
+    public void Test15_Free_registration() {
 
         BasePage.ClickFree();
-        vars.put("window_handles", driver.getWindowHandles());
-        BasePage.ClickBtnStratFree();
+        vars.put("window_handles", webDriver.getWindowHandles());
+        BasePage.ClickBtnStartFree();
         vars.put("win9864", waitForWindow(2000));
-        driver.switchTo().window(vars.get("win9864").toString());
+        webDriver.switchTo().window(vars.get("win9864").toString());
         BasePage.ClickEmail();
         BasePage.SendEmail();
         BasePage.ClickPhoneNumber();
@@ -191,12 +198,12 @@ public class AppTest {
     }
 
     @Test
-    public void Test15_look_all_materials() {
+    public void Test16_Look_all_materials() {
         BasePage.Look_all_materials();
     }
 
     @Test
-    public void Test16_negative_send_contacts() {
+    public void Test17_Send_contacts_Negative_Email() {
         String Current_message = "Укажите, пожалуйста, корректный email";
         BasePage.ClickName();
         BasePage.SendName();
@@ -205,20 +212,20 @@ public class AppTest {
         BasePage.ClickPhoneNumber();
         BasePage.SendPhoneNumber();
         BasePage.Submit();
-        Assert.assertEquals(Current_message, driver.findElement(By.xpath("//*[@id=\"form562643444\"]/div[2]/div[2]/div/div")).getText());
+        Assert.assertEquals(Current_message, webDriver.findElement(By.xpath("//*[@id=\"form562643444\"]/div[2]/div[2]/div/div")).getText());
     }
 
     @Test
-    public void Test17_negative_subscription_Email() {
+    public void Test18_Subscription_Negative_Email() {
         String Current_Message = "Укажите, пожалуйста, корректный email";
         BasePage.Subscription();
         BasePage.SendIncorrectEmailSubscription();
         BasePage.SubmitSubscription();
-        Assert.assertEquals(Current_Message, driver.findElement(By.xpath("//*[@id=\"form572934623\"]/div[2]/div[1]/div/div")).getText());
+        Assert.assertEquals(Current_Message, webDriver.findElement(By.xpath("//*[@id=\"form572934623\"]/div[2]/div[1]/div/div")).getText());
     }
 
     @Test
-    public void Test18_negative_SendContacts_IncorrectPhoneNumber() {
+    public void Test19_Send_contacts_Negative_PhoneNumber() {
         String Current_Message = "Укажите, пожалуйста, корректный номер телефона";
         BasePage.ClickName();
         BasePage.SendName();
@@ -227,12 +234,12 @@ public class AppTest {
         BasePage.ClickPhoneNumber();
         BasePage.SendPhoneIncorrectNumber();
         BasePage.Submit();
-        Assert.assertEquals(Current_Message, driver.findElement(By.xpath("//*[@id=\"form562643444\"]/div[2]/div[3]/div/div[2]")).getText());
+        Assert.assertEquals(Current_Message, webDriver.findElement(By.xpath("//*[@id=\"form562643444\"]/div[2]/div[3]/div/div[2]")).getText());
 
     }
 
     @Test
-    public void Test19_Send_Contacts_SpaceField() {
+    public void Test20_Send_contacts_Negative_Empty() {
         BasePage.ClickName();
         BasePage.SendSpaceName();
         BasePage.ClickEmail();
@@ -240,7 +247,6 @@ public class AppTest {
         BasePage.ClickPhoneNumber();
         BasePage.SendPhoneNumber();
         BasePage.Submit();
-        Assert.assertEquals("Обязательное поле", driver.findElement(By.xpath("//*[@id=\"form562643444\"]/div[2]/div[1]/div/div")).getText());
+        Assert.assertEquals("Обязательное поле", webDriver.findElement(By.xpath("//*[@id=\"form562643444\"]/div[2]/div[1]/div/div")).getText());
     }
-
 }

@@ -6,28 +6,30 @@ import org.openqa.selenium.WebDriver;
 public class BasePage {
     private WebDriver webDriver;
 
-    public BasePage(WebDriver driver) {
+    public BasePage(WebDriver webDriver) {
         this.webDriver = webDriver;
     }
 
     private static final String CONTACTS = "//*[@id=\"rec623700412\"]/div/div/div/section/div[1]/div/div[1]/ul/li[4]/a";
-    private static final String FREE_EVENTS = "//*[@id=\"sbs-562561178-1678713806343\"]/div/a";
-    private static final String CAREER_CENTER = "//*[@id=\"sbs-562561178-1678713806322\"]/div/a";
-    private static final String MEDIA = "//*[@id=\"sbs-562561178-1678713806329\"]/div/a";
-    private static final String CORPORATE_EDUCATION = "//*[@id=\"sbs-562561178-1678713806333\"]/div/a";
-    private static final String COURSES = "//*[@id=\"rec562561178\"]/div/div/div[20]/a";
-    private static final String HISTORY = "//*[@id=\"sbs-563872722-1679689839392\"]/div/a";
-    private static final String TESTING_COURSE = ".tn-elem__5625611781679405234205 > .tn-atom";
-    private static final String GO_TO_MEDIA = "//*[@id=\"sbs-566452408-1679042434649\"]/div/a";
+    private static final String FREE_EVENTS = "//*[@id=\"rec623700412\"]/div/div/div/section/div[1]/div/div[1]/ul/li[2]/a";
+    private static final String CAREER_CENTER = "//*[@id=\"rec623700412\"]/div/div/div/section/div[1]/div/div[1]/ul/li[3]/a";
+    private static final String MEDIA = "//*[@id=\"rec623700412\"]/div/div/div/section/div[1]/div/div[1]/ul/li[5]/a";
+    private static final String CORPORATE_EDUCATION = "//*[@id=\"rec623700412\"]/div/div/div/section/div[1]/div/div[1]/ul/li[6]/a";
+    private static final String COURSES = "//*[@id=\"rec623700412\"]/div/div/div/section/div[1]/div/div[2]/div[1]/div/ul/li[8]/a/span";
+    private static final String PARTNERSHIP = "//*[@id=\"rec625525165\"]/div/div/div[14]/div/a[3]";
+    private static final String STORY = "//*[@id=\"swiper-wrapper-73a10f59102e5ff8c\"]/div[1]/div/div[2]/a/span";
+    public static final String TESTING_COURSE = "//*[@id=\"rec623700412\"]/div/div/div/section/div[1]/div/div[2]/div[1]/div/ul/li[4]/a/span";
+    private static final String GO_TO_MEDIA = "//*[@id=\"rec623700900\"]/div/div/div/section/div/a/span";
     private static final String SUBSCRIPTION = ".t-input-group_em:nth-child(1) .t-input";
-    private static final String LOOK_ALL_MATERIALS = "//*[@id=\"sbs-563688903-1679040484154\"]/div/a";
+    private static final String LOOK_ALL_MATERIALS = "//*[@id=\"rec623700702\"]/div/div/div/section/div/a/span";
     private static final String ERROR_MESSAGE = "t-input-error";
     private static final String SEARCH_CONTACTS = "//*[@id=\"rec618804078\"]/div/div/div[6]/h1";
     private static final String SEARCH_MEDIA = "//*[@id=\"header\"]/div[1]/p";
-    private static final String SEARCH_FREE_EVENTS = "//*[@id=\"rec487651767\"]/div/div/div[3]/h1";
+    private static final String SEARCH_FREE_EVENTS = "//*[@id=\"rec614382303\"]/div/div/div[3]/h1/text()[1]";
     private static final String SEARCH_CAREER_CENTER = "//*[@id=\"rec350865380\"]/div/div/div[3]/h1";
-    private static final String SEARCH_CORP_OBUCHENIE = "#rec425993788 > div > div > div.t396__elem.tn-elem.tn-elem__4259937881636447160852 > h1 > span";
-    private static final String SEARCH_COURSES = "//*[@id=\"rec567539569\"]/div/div/div[3]/h1";
+    private static final String SEARCH_CORPORATE_EDUCATION = "//*[@id=\"rec425993788\"]/div/div/div[3]/h1/span";
+    private static final String SEARCH_COURSES = "//*[@id=\"rec609355207\"]/div/div/div[3]/h1";
+    private static final String SEARCH_PARTNERSHIP = "//*[@id=\"rec368990860\"]/div/div/div[3]/div";
     private static final String NAME_FIELD = "name";
     private static final String EMAIL_FIELD = "email";
     private static final String PHONE_NUMBER_FIELD = "tildaspec-phone-part[]";
@@ -81,7 +83,7 @@ public class BasePage {
     }
 
     public String getCorporateEducation() {
-        return webDriver.findElement(By.cssSelector(SEARCH_CORP_OBUCHENIE)).getText();
+        return webDriver.findElement(By.xpath(SEARCH_CORPORATE_EDUCATION)).getText();
     }
 
     public void clickCourses() {
@@ -92,12 +94,20 @@ public class BasePage {
         return webDriver.findElement(By.xpath(SEARCH_COURSES)).getText();
     }
 
-    public void readHistory() {
-        webDriver.findElement(By.xpath(HISTORY)).click();
+    public void clickPartnership() {
+        webDriver.findElement(By.xpath(PARTNERSHIP)).click();
     }
 
-    public void Course_Testing() {
-        webDriver.findElement(By.cssSelector(TESTING_COURSE)).click();
+    public String getPartnership() {
+        return webDriver.findElement(By.xpath(SEARCH_PARTNERSHIP)).getText();
+    }
+
+    public void readStory() {
+        webDriver.findElement(By.xpath(STORY)).click();
+    }
+
+    public void CourseTesting() {
+        webDriver.findElement(By.xpath(TESTING_COURSE)).click();
     }
 
     public void Go_to_media() {
@@ -146,7 +156,7 @@ public class BasePage {
     }
 
     public void SendIncorrectEmail() {
-        webDriver.findElement(By.name(EMAIL_FIELD)).sendKeys("12345");
+        webDriver.findElement(By.name(EMAIL_FIELD)).sendKeys("ivanovii@gmail");
     }
 
     public void ClickPhoneNumber() {
@@ -181,7 +191,7 @@ public class BasePage {
         webDriver.findElement(By.linkText(FREE)).click();
     }
 
-    public void ClickBtnStratFree() {
+    public void ClickBtnStartFree() {
         webDriver.findElement(By.cssSelector(START_FREE)).click();
     }
 
