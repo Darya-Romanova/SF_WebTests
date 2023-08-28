@@ -56,13 +56,13 @@ Steps:
  5. input phone number "(999) 999-99-99"
  6. click submit
 
- Test11 - Read student story    
+ Test11 - read student story    
  Steps:   
  1. find Content block with student stories
  2. click on "Читать историю"
 
 
- Test12 - Ask the question form  
+ Test12 - ask the question form  
  Steps:  
  1. click contacts
  2. click button "Задать вопрос"
@@ -72,18 +72,18 @@ Steps:
  6. input question "Test"
  7. click submit
 
- Test13 - Go to the media  
+ Test13 - go to the media  
  Steps:  
  1. click "перейти в Медиа" link 
 
- Test14 - Subscription form - valid data  
+ Test14 - subscription form - valid data  
  Steps:  
  1. find field for input e-mail in the footer
  2. click to the field for input e-mail
  3. input e-mail "ivanovii@gmail.com"
  4. click "Подписаться"
 
- Test15 - Free registration for webinar form  
+ Test15 - free registration for webinar form  
  Steps:  
  1. click "Бесплатно"
  2. find content with name "бесплатные вебинары и интенсивы"
@@ -93,11 +93,11 @@ Steps:
  6. click button "Участвую"
 
 
-  Test16 - Look all materials  
+  Test16 - look all materials  
   Steps:  
   1. click "смотреть все материалы" link
 
-  Test17 - Send contacts form - negative test for e-mail field (format)  
+  Test17 - send contacts form - negative test for e-mail field (format)  
   Steps:  
   1. find form for sending contacts
   2. input name "Иванов Иван"
@@ -105,7 +105,7 @@ Steps:
   4. input phone number "(999) 999-99-99"
   5. click submit
 
-  Test18 - Subscription form - negative test for e-mail field (numbers)  
+  Test18 - subscription form - negative test for e-mail field (numbers)  
   Steps:  
   1. find form for sending contacts
   2. input name "Иванов Иван"
@@ -113,7 +113,7 @@ Steps:
   4. input phone number "(999) 999-99-99"
   5. click submit
 
-Test19 - Send contacts form - negative test for phone number field (not existing)  
+Test19 - send contacts form - negative test for phone number field (not existing)  
 Steps:  
 1. find form for sending contacts
 2. input name "Иванов Иван"
@@ -121,7 +121,7 @@ Steps:
 4. input phone number "(000) 000-00-00"
 5. click submit
 
-Test20 - Send contacts form - negative test for name field (empty)  
+Test20 - send contacts form - negative test for name field (empty)  
 Steps:  
 1. find form for sending contacts
 2. input name ""
