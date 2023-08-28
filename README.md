@@ -76,7 +76,7 @@ Steps:
  Steps:  
  1. click "перейти в Медиа" link 
 
- Test14 - Subscription form  
+ Test14 - Subscription form - valid data  
  Steps:  
  1. find field for input e-mail in the footer
  2. click to the field for input e-mail
@@ -105,7 +105,7 @@ Steps:
   4. input phone number "(999) 999-99-99"
   5. click submit
 
-  Test18 - Send contacts form - negative test for e-mail field (numbers)  
+  Test18 - Subscription form - negative test for e-mail field (numbers)  
   Steps:  
   1. find form for sending contacts
   2. input name "Иванов Иван"
